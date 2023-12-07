@@ -9,7 +9,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const ChatingScreen = () => {
   const [messagesList, setMessagesList] = useState<any>([]);
   const [messages, setMessages] = useState('');
@@ -40,12 +40,15 @@ const ChatingScreen = () => {
                 style={{
                   color: 'black',
                   borderWidth: 1,
+                  height: 40,
                   borderColor: '#D3D3D3',
-                  padding: 2,
                   margin: 5,
+                  borderRadius: 10,
+                  paddingTop: 9,
+                  paddingLeft: 9,
                 }}>
                 {' '}
-                me : {item}
+                Me : {item}
               </Text>
             );
           })}
@@ -57,7 +60,11 @@ const ChatingScreen = () => {
           <TextInput
             placeholder="Type to Text"
             placeholderTextColor="black"
-            style={{color: 'black'}}
+            style={{
+              color: 'black',
+              borderRadius: 20,
+              padding: 10,
+            }}
             multiline
             value={messages}
             onChangeText={Text => setMessages(Text)}
@@ -68,13 +75,13 @@ const ChatingScreen = () => {
             flex: 0.2,
             justifyContent: 'center',
             alignItems: 'center',
-            borderLeftWidth: 1,
+            borderLeftWidth: 0.2,
             borderColor: '#cccrr',
           }}>
           <Text
             style={{color: '#1E90FF', fontWeight: 'bold'}}
             onPress={() => ClearField()}>
-            SEND
+            <FontAwesome name="send" color={'gray'} size={25} />
           </Text>
         </TouchableOpacity>
       </View>
