@@ -5,6 +5,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 
 
+
 const SignupSchema = Yup.object().shape({
     Email: Yup.string()
         .min(6, 'Too Short!')
@@ -31,9 +32,13 @@ const SignupSchema = Yup.object().shape({
 const SignUpScreen = ({ navigation }: any) => {
 
     const SaveData = (values: any) => {
-
+      
         console.log('========', values)
-        navigation.navigate("Home")
+        navigation.replace("Home")
+    }
+
+    function alert(arg0: string): void {
+        throw new Error('Function not implemented.')
     }
 
     // function alert(arg0: string): void {
@@ -54,7 +59,7 @@ const SignUpScreen = ({ navigation }: any) => {
             validationSchema={SignupSchema}
             onSubmit={SaveData}
         >
-            {({ values, errors, touched, handleSubmit, setFieldTouched, setFieldValue, resetForm }: any) => (
+            {({ values, errors, touched, handleSubmit, setFieldTouched, setFieldValue, handleChange }: any) => (
 
                 <View style={style.loginContainer}>
                     <Text style={style.RNheading}>Create an account</Text>
@@ -62,8 +67,7 @@ const SignUpScreen = ({ navigation }: any) => {
                         placeholder='Enter Email'
                         placeholderTextColor='black'
                         value={values.Email}
-                        onBlur={() => setFieldTouched('Email')}
-                        onChangeText={(val) => setFieldValue('Email', val)}
+                        onChangeText={handleChange('Email')}
 
                     />
                     {touched.Email && errors.Email ? <Text style={style.ErrorText}>{errors.Email}</Text> : null}
@@ -71,8 +75,7 @@ const SignUpScreen = ({ navigation }: any) => {
                         placeholder='Enter Password'
                         placeholderTextColor='black'
                         value={values.Password}
-                        onBlur={() => setFieldTouched('Password')}
-                        onChangeText={(val) => setFieldValue('Password', val)}
+                        onChangeText={handleChange('Password')}
                         secureTextEntry={true}
                     />
                     {touched.Password && errors.Password ? <Text style={style.ErrorText}>{errors.Password}</Text> : null}
@@ -81,8 +84,7 @@ const SignUpScreen = ({ navigation }: any) => {
                         placeholder='Confirm Password'
                         placeholderTextColor='black'
                         value={values.ConfirmPassword}
-                        onBlur={() => setFieldTouched('ConfirmPassword')}
-                        onChangeText={(val) => setFieldValue('ConfirmPassword', val)}
+                        onChangeText={handleChange('ConfirmPassword')}
                         secureTextEntry={true}
                     />
                     {touched.ConfirmPassword && errors.ConfirmPassword ? <Text style={style.ErrorText}>{errors.ConfirmPassword}</Text> : null}
@@ -90,7 +92,6 @@ const SignUpScreen = ({ navigation }: any) => {
                     <View style={style.loginBtn}>
                         <Button title='Sign Up' onPress={() => {
                             handleSubmit()
-                            resetForm()
                         }} />
 
                     </View>

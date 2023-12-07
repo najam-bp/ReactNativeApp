@@ -12,6 +12,9 @@ import UserScreen from './Screen/ProfileScreen';
 import SplashScreen from './Screen/SplashScreen';
 import AddStatusScreen from './Screen/AddStatusScreen';
 import ChatingScreen from './Screen/ChatingScreen';
+import QrHomeScreen from './Screen/QrHomeScreen';
+import QrScanScreen from './Screen/QrScanScreen';
+import QrGenerateScreen from './Screen/QrGenerteScreen'
 // import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +41,9 @@ function App() {
           // headerBackTitleVisible: false
         })} />
         <Stack.Screen name='User' component={UserScreen} options={options} />
+        <Stack.Screen name='QR' component={QrHomeScreen} options={options} />
+        <Stack.Screen name='QRScan' component={QrScanScreen} options={options} />
+        <Stack.Screen name='QRGenerate' component={QrGenerateScreen} options={options} />
       </Stack.Navigator>
     </NavigationContainer>
   );

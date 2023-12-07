@@ -2,7 +2,9 @@ import { View, Text, StatusBar, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { IconButton } from 'react-native-paper'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { useNavigation } from '@react-navigation/native'
+import { removeUser } from './AsyncStorage'
 
 const CustomStatusBar = ({ title, backgroundColor, leftButtonLable, LeftButtonAction, ...props }:any) => {
     const navigation = useNavigation();
@@ -21,11 +23,14 @@ const CustomStatusBar = ({ title, backgroundColor, leftButtonLable, LeftButtonAc
             </Text>
             <IconButton 
             icon={()=>{
-                return  <FontAwesome name='plus' color={'gray'} size={25} />
+                return  <SimpleLineIcons name='logout' color={'gray'} size={25} />
             }}
 
             size={20}
-            onPress={()=>{navigation.navigate('addStatus')}}
+            onPress={async()=>{
+                await removeUser()
+                navigation.replace('Login')
+            }}
             />
         </View>
     )   

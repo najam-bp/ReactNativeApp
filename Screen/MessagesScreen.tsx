@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, FlatList, StatusBar, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PostCard from './PostCard'
 import CustomStatusBar from './CustomStatusBar';
+import { getUser } from './AsyncStorage';
 
 
 
@@ -49,6 +50,8 @@ const Posts = [
 ]
 
 const MessagesScreen = () => {
+    
+
     return (
         <SafeAreaView >
             <CustomStatusBar

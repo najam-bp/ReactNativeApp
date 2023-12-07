@@ -1,14 +1,34 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { getUser } from './AsyncStorage'
 
 const SplashScreen = ({ navigation }:any) => {
+  const fetch = async () =>{
+    const a = await getUser()
+    console.log("====== useEFFECT fetch",a)
+    a == null ? navigation.navigate('Login') : navigation.replace('Home')
+    return a
+  }
+
+  useEffect(() => {
+       
+    setTimeout(async () => {
+    
+      fetch()
+
+    }, 1000)
+
+  }, [])
+
   return (
     <View style={style.mainContainer}>
       <Image style={style.mainImg} source={require('./assets/onboarding-img2.png')} />
       <Text style={style.mainText}>A New Way To Connect With The World!</Text>
-      <TouchableOpacity style={style.loginBtn} onPress={() => navigation.navigate('Login')}>
+      {/* <TouchableOpacity style={style.loginBtn} onPress={ async () => {
+        fetch() == undefined || fetch() == null ? navigation.navigate('Login') : navigation.replace('Home')
+        }}>
         <Text style={style.loginBtnText}>Let's Start</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   )
 }

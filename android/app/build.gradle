@@ -43,11 +43,11 @@ react {
     // extraPackagerArgs = []
 
     /* Hermes Commands */
-    //   The hermes compiler command to run. By default it is 'hermesc'
-    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
-    //
-    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
-    // hermesFlags = ["-O", "-output-source-map"]
+//   The hermes compiler command to run. By default it is 'hermesc'
+// hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+//
+//   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+// hermesFlags = ["-O", "-output-source-map"]
 }
 
 /**
@@ -80,6 +80,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
+
     }
     signingConfigs {
         debug {

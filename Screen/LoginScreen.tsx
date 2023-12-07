@@ -3,6 +3,7 @@ import React from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { saveUser } from './AsyncStorage'
 
 
 const SignupSchema = Yup.object().shape({
@@ -23,9 +24,9 @@ const LoginScreen = ({ navigation }: any) => {
 
 
   const SaveData = (values: any) => {
-
-    console.log('========', values)
-    navigation.navigate("Home")
+    saveUser(values)
+    navigation.replace("Home")
+    // navigation.navigate("Home")
   }
 
   return (
@@ -36,7 +37,7 @@ const LoginScreen = ({ navigation }: any) => {
       validationSchema={SignupSchema}
       onSubmit={SaveData}
     >
-      {({ values, errors, touched, resetForm, setFieldTouched, isValid, handleSubmit, setFieldValue }) => (
+      {({ values, errors, touched,  setFieldTouched, isValid, handleSubmit, setFieldValue, handleChange }) => (
 
         <View style={style.loginContainer}>
           <Image style={style.mainImg} source={require('./assets/rn-social-logo.png')} />
@@ -45,8 +46,7 @@ const LoginScreen = ({ navigation }: any) => {
             placeholder='Enter Email'
             placeholderTextColor='black'
             value={values.Email}
-            onBlur={() => setFieldTouched('Email')}
-            onChangeText={(val) => setFieldValue('Email', val)}
+            onChangeText={handleChange('Email')}
           />
           {touched.Email && errors.Email && (
             <Text style={style.ErrorText}>{errors.Email}</Text>
@@ -56,8 +56,7 @@ const LoginScreen = ({ navigation }: any) => {
             placeholder='Enter Password'
             placeholderTextColor='black'
             value={values.Password}
-            onBlur={() => setFieldTouched('Password')}
-            onChangeText={(val) => setFieldValue('Password', val)}
+            onChangeText={handleChange('Password')}
             secureTextEntry={true}
           />
           {touched.Password && errors.Password && (
@@ -73,7 +72,6 @@ const LoginScreen = ({ navigation }: any) => {
           <View style={style.loginBtn}>
             <Button title='Login In' onPress={() => {
               handleSubmit()
-              resetForm()
             }} />
           </View>
 
