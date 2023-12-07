@@ -1,6 +1,13 @@
-import { View, FlatList, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import CustomStatusBar from './CustomStatusBar'
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import React from 'react';
+import CustomStatusBar from './CustomStatusBar';
 
 const Messages = [
   {
@@ -42,29 +49,30 @@ const Messages = [
     messageTime: '2 hours ago',
     postText: 'Hey there, this is my test for a post.',
     postImg: require('../Screen/assets/post-img-3.jpeg'),
-  }
-]
+  },
+];
 
-const ChatScreen = ({ navigation }: any) => {
+const ChatScreen = ({navigation}: any) => {
   return (
     <View style={style.Container}>
-      <CustomStatusBar
-        title='Messages'
-        backgroundColor='#ffb3b3'
-        rightButtonLable='Home'
-      />
+      <CustomStatusBar title="Messages" backgroundColor="#ffb3b3" />
       <FlatList
         data={Messages}
-        keyExtractor={(item: { id: any; }) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={{ width: '100%' }} onPress={()=>navigation.navigate('Chating', {UserName: item.UserName})}>
+        keyExtractor={(item: {id: any}) => item.id}
+        style={{padding: 10}}
+        renderItem={({item}) => (
+          <TouchableOpacity
+            style={{width: '100%'}}
+            onPress={() =>
+              navigation.navigate('Chating', {UserName: item.UserName})
+            }>
             <View style={style.userInfo}>
               <View style={style.UserImgWrapper}>
                 <Image style={style.UserImg} source={item.UserImg} />
               </View>
               <View style={style.TextSection}>
                 <View style={style.UserInfoText}>
-                <Text style={style.UserName}>{item.UserName}</Text>
+                  <Text style={style.UserName}>{item.UserName}</Text>
                 </View>
                 <Text style={style.MessageText}>{item.postText}</Text>
               </View>
@@ -73,16 +81,14 @@ const ChatScreen = ({ navigation }: any) => {
         )}
       />
     </View>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   Container: {
     flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
     alignItems: 'center',
-    backgroundColor: '#F8F8FF'
+    backgroundColor: '#F8F8FF',
   },
   userInfo: {
     flexDirection: 'row',
@@ -90,12 +96,12 @@ const style = StyleSheet.create({
   },
   UserImgWrapper: {
     paddingTop: 15,
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   UserImg: {
     width: 50,
     height: 50,
-    borderRadius: 25
+    borderRadius: 25,
   },
   TextSection: {
     flexDirection: 'column',
@@ -104,39 +110,30 @@ const style = StyleSheet.create({
     marginLeft: 10,
     width: 300,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc'
+    borderBottomColor: '#cccccc',
   },
   UserInfoText: {
     flexDirection: 'row',
     marginBottom: 5,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   UserName: {
     fontSize: 14,
     fontWeight: 'bold',
-    color:'black',
-    marginLeft:-230
+    color: 'black',
+    marginLeft: -230,
   },
   MessageTime: {
     fontSize: 12,
     color: '#666',
-
   },
   MessageText: {
     fontSize: 14,
-    color: '#333333'
-  }
+    color: '#333333',
+  },
+});
 
-})
-
-
-export default ChatScreen
-
-
-
-
-
-
+export default ChatScreen;
 
 // import styled from 'styled-components';
 

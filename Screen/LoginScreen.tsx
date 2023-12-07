@@ -1,10 +1,17 @@
-import { View, Text, Button, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native'
-import React from 'react'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import { saveUser } from './AsyncStorage'
-
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  TextInput,
+} from 'react-native';
+import React from 'react';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import {saveUser} from './AsyncStorage';
 
 const SignupSchema = Yup.object().shape({
   Email: Yup.string()
@@ -16,35 +23,36 @@ const SignupSchema = Yup.object().shape({
     .required('Please enter your password')
     .matches(
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-      'Must contain minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character'
+      'Must contain minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character',
     ),
 });
 
-const LoginScreen = ({ navigation }: any) => {
-
-
+const LoginScreen = ({navigation}: any) => {
   const SaveData = (values: any) => {
-    saveUser(values)
-    navigation.replace("Home")
+    saveUser(values);
+    navigation.replace('Home');
     // navigation.navigate("Home")
-  }
+  };
 
   return (
-    <Formik initialValues={{
-      Email: '',
-      Password: ''
-    }}
+    <Formik
+      initialValues={{
+        Email: '',
+        Password: '',
+      }}
       validationSchema={SignupSchema}
-      onSubmit={SaveData}
-    >
-      {({ values, errors, touched,  setFieldTouched, isValid, handleSubmit, setFieldValue, handleChange }) => (
-
+      onSubmit={SaveData}>
+      {({values, errors, touched, handleSubmit, handleChange}) => (
         <View style={style.loginContainer}>
-          <Image style={style.mainImg} source={require('./assets/rn-social-logo.png')} />
+          <Image
+            style={style.mainImg}
+            source={require('./assets/rn-social-logo.png')}
+          />
           <Text style={style.RNheading}>RN Social App</Text>
-          <TextInput style={style.loginInput}
-            placeholder='Enter Email'
-            placeholderTextColor='black'
+          <TextInput
+            style={style.loginInput}
+            placeholder="Enter Email"
+            placeholderTextColor="black"
             value={values.Email}
             onChangeText={handleChange('Email')}
           />
@@ -52,9 +60,10 @@ const LoginScreen = ({ navigation }: any) => {
             <Text style={style.ErrorText}>{errors.Email}</Text>
           )}
 
-          <TextInput style={style.loginInput}
-            placeholder='Enter Password'
-            placeholderTextColor='black'
+          <TextInput
+            style={style.loginInput}
+            placeholder="Enter Password"
+            placeholderTextColor="black"
             value={values.Password}
             onChangeText={handleChange('Password')}
             secureTextEntry={true}
@@ -68,53 +77,59 @@ const LoginScreen = ({ navigation }: any) => {
               <Text style={{fontSize:20, color:'#ffff'}}>Log In</Text>
             </TouchableOpacity> */}
 
-
           <View style={style.loginBtn}>
-            <Button title='Login In' onPress={() => {
-              handleSubmit()
-            }} />
+            <Button
+              title="Login In"
+              onPress={() => {
+                handleSubmit();
+              }}
+            />
           </View>
 
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => {}}>
             <Text style={style.forgetPass}>Forget Password</Text>
           </TouchableOpacity>
 
           {/* Social Link */}
 
-          <TouchableOpacity style={style.socailFacBtn} onPress={() => { }}>
-            <FontAwesome name="facebook" color='blue' size={24} />
-            <Text style={{ paddingHorizontal: 20, color: "blue" }}>Sign In With Facebook</Text>
+          <TouchableOpacity style={style.socailFacBtn} onPress={() => {}}>
+            <FontAwesome name="facebook" color="blue" size={24} />
+            <Text style={{paddingHorizontal: 20, color: 'blue'}}>
+              Sign In With Facebook
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={style.socailGooBtn} onPress={() => { }}>
-            <FontAwesome name="google" color='red' size={24} />
-            <Text style={{ paddingHorizontal: 20, color: "red" }}>Sign In With Google</Text>
+          <TouchableOpacity style={style.socailGooBtn} onPress={() => {}}>
+            <FontAwesome name="google" color="red" size={24} />
+            <Text style={{paddingHorizontal: 20, color: 'red'}}>
+              Sign In With Google
+            </Text>
           </TouchableOpacity>
 
           {/* Social Link */}
 
-
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={style.creatNewAccnt}>Don't have an account? Create here</Text>
+            <Text style={style.creatNewAccnt}>
+              Don't have an account? Create here
+            </Text>
           </TouchableOpacity>
         </View>
       )}
     </Formik>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   loginContainer: {
     flex: 1,
     backgroundColor: '	#f4f0f0',
-    marginTop: '12%'
+    marginTop: '12%',
   },
   mainImg: {
     width: 150,
     height: 150,
     marginLeft: '35%',
-    marginTop: 2
-
+    marginTop: 2,
   },
   loginInput: {
     borderWidth: 1,
@@ -124,24 +139,24 @@ const style = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 30,
     paddingLeft: 5,
-    color: 'black'
+    color: 'black',
   },
   loginBtn: {
     margin: 5,
-    padding: 20
+    padding: 20,
   },
   RNheading: {
     textAlign: 'center',
     fontSize: 30,
     color: '#000066',
-    marginBottom: 20
+    marginBottom: 20,
   },
   forgetPass: {
     textAlign: 'center',
     fontSize: 15,
     color: '#3399FF',
     fontWeight: 'bold',
-    marginTop: -5
+    marginTop: -5,
   },
   creatNewAccnt: {
     textAlign: 'center',
@@ -149,7 +164,7 @@ const style = StyleSheet.create({
     color: '#3399FF',
     fontWeight: 'bold',
     marginLeft: 5,
-    marginTop: 10
+    marginTop: 10,
   },
   socailFacBtn: {
     backgroundColor: '#d2d1ff',
@@ -158,9 +173,9 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginLeft: 30,
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center"
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   socailGooBtn: {
     backgroundColor: '#ffadaa',
@@ -172,15 +187,14 @@ const style = StyleSheet.create({
     marginLeft: 30,
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   ErrorText: {
     color: 'red',
     fontSize: 12,
     marginLeft: 30,
-    marginTop: -8
+    marginTop: -8,
   },
+});
 
-})
-
-export default LoginScreen
+export default LoginScreen;

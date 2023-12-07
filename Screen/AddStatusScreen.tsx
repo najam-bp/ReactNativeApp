@@ -1,18 +1,28 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native';
-import { IconButton } from 'react-native-paper'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {IconButton} from 'react-native-paper';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
-const AddStatusScreen = ({ title, backgroundColor, leftButtonLable, LeftButtonAction, ...props }: any) => {
+const AddStatusScreen = ({
+  title,
+  backgroundColor,
+  leftButtonLable,
+  LeftButtonAction,
+  ...props
+}: any) => {
   const navigation = useNavigation();
 
   return (
@@ -20,36 +30,50 @@ const AddStatusScreen = ({ title, backgroundColor, leftButtonLable, LeftButtonAc
       <View style={style.header}>
         <IconButton
           icon={() => {
-            return <FontAwesome name='arrow-left' color={'gray'} size={25} />
+            return <FontAwesome name="arrow-left" color={'gray'} size={25} />;
           }}
-
           size={20}
-          onPress={() => { navigation.navigate('Home') }}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
         />
-        <Text style={style.headerText}>
-          {title}
-        </Text>
+        <Text style={style.headerText}>{title}</Text>
         <IconButton
           icon={() => {
-            return <TouchableOpacity>
-              <Text style={{ fontSize: 12, color: '#0000e6', fontWeight: 'bold' }}>POST</Text>
-            </TouchableOpacity>
+            return (
+              <TouchableOpacity>
+                <Text
+                  style={{fontSize: 12, color: '#0000e6', fontWeight: 'bold'}}>
+                  POST
+                </Text>
+              </TouchableOpacity>
+            );
           }}
-
           size={20}
-        // onPress={()=>{navigation.navigate('addStatus')}}
+          // onPress={()=>{navigation.navigate('addStatus')}}
         />
       </View>
       <View style={style.Container}>
         <View style={style.InputWrapper}>
-          <TextInput style={style.InputField} placeholder="What's on your mind?" multiline numberOfLines={4} />
+          <TextInput
+            style={style.InputField}
+            placeholder="What's on your mind?"
+            multiline
+            numberOfLines={4}
+          />
         </View>
 
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="Take Photo" onPress={() => console.log("notes tapped!")}>
+          <ActionButton.Item
+            buttonColor="#9b59b6"
+            title="Take Photo"
+            onPress={() => console.log('notes tapped!')}>
             <MaterialIcon name="photo-camera" style={style.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="Choose Photo" onPress={() => { }}>
+          <ActionButton.Item
+            buttonColor="#1abc9c"
+            title="Choose Photo"
+            onPress={() => {}}>
             <FontAwesome name="photo" style={style.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -84,14 +108,14 @@ const AddStatusScreen = ({ title, backgroundColor, leftButtonLable, LeftButtonAc
         />
       </Tab.Navigator> */}
     </>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   Container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   InputWrapper: {
     flex: 1,
@@ -106,13 +130,13 @@ const style = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     width: '90%',
-    color: 'black'
+    color: 'black',
   },
   headerText: {
     fontFamily: 'bold',
-    color: "black",
+    color: 'black',
     textAlign: 'center',
-    flex: .9,
+    flex: 0.9,
     fontSize: 22,
     // marginRight: Dimen.width/7
   },
@@ -121,17 +145,21 @@ const style = StyleSheet.create({
     width: 22,
     height: 17,
     resizeMode: 'contain',
-    marginRight: 10
+    marginRight: 10,
   },
 
   header: {
-    flexDirection: "row", alignItems: "center", width: '100%', paddingTop: 40, paddingBottom: 10
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    paddingTop: 40,
+    paddingBottom: 10,
   },
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
     color: 'white',
   },
-})
+});
 
-export default AddStatusScreen
+export default AddStatusScreen;
